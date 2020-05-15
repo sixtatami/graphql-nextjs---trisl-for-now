@@ -23,7 +23,7 @@ const Post = ({ post }) => (
   <Link href="/p/[id]" as={`/p/${post.id}`}>
     <a>
       <h2>{post.title}</h2>
-      <small>By {post.author.name}</small>
+      <small>By my friend {post.author.name}</small>
       <p>{post.content}</p>
       <style jsx>{`
         a {
