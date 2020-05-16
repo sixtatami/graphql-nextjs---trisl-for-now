@@ -41,7 +41,7 @@ const Blog = () => {
   const { loading, error, data } = useQuery(FeedQuery)
 
   if (loading) {
-    return <div>Loading ...</div>
+    return <div>trying to Loading ...</div>
   }
   if (error) {
     return <div>Error: {error.message}</div>
