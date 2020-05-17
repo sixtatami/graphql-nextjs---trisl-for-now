@@ -4,6 +4,27 @@ import { withApollo } from '../apollo/client'
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/react-hooks'
 
+import React, {useCallback} from 'react'
+import {useDropzone} from 'react-dropzone'
+
+function MyDropzone() {
+  const onDrop = useCallback(acceptedFiles => {
+    console.log(acceptedFiles)
+  }, [])
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
+  return (
+    <div {...getRootProps()}>
+      <input {...getInputProps()} />
+      {
+        isDragActive ?
+          <p>Drop the files here ...</p> :
+          <p>Drag 'n' drop some files here, or click to select files</p>
+      }
+    </div>
+  )
+}
+
 const FeedQuery = gql`
   query FeedQuery {
     feed {
@@ -53,6 +74,9 @@ const Blog = ({ apidata }) => {
     <Layout>
       <div className="page">
         <h1>My Blog</h1>
+
+        <MyDropzone/>
+
         {JSON.stringify(apidata, null, 2)}
 
         <main>
@@ -80,6 +104,8 @@ const Blog = ({ apidata }) => {
     </Layout>
   )
 }
+
+
 
 Blog.getInitialProps = async () => {
   const resp = await fetch("https://atlekraft.com/api/test", {
