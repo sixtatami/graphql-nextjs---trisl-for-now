@@ -37,6 +37,8 @@ const Post = ({ post }) => (
   </Link>
 )
 
+
+
 const Blog = () => {
   const { loading, error, data } = useQuery(FeedQuery)
 
@@ -51,6 +53,8 @@ const Blog = () => {
     <Layout>
       <div className="page">
         <h1>My Blog</h1>
+        {JSON.stringify(data, null, 2)}
+
         <main>
           {data.feed.map(post => (
             <div className="post">
@@ -76,5 +80,14 @@ const Blog = () => {
     </Layout>
   )
 }
+
+Blog.getInitialProps = async () => {
+  const resp = await fetch("https://atlekraft.com/api/test", {
+    method: "POST",
+  });
+  const data = await resp.json();
+  return { data };
+};
+
 
 export default withApollo(Blog)
