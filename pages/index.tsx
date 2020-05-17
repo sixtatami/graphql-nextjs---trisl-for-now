@@ -39,7 +39,7 @@ const Post = ({ post }) => (
 
 
 
-const Blog = () => {
+const Blog = ({ apidata }) => {
   const { loading, error, data } = useQuery(FeedQuery)
 
   if (loading) {
