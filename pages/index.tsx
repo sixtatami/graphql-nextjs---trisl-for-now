@@ -9,7 +9,24 @@ import {useDropzone} from 'react-dropzone'
 
 function MyDropzone() {
   const onDrop = useCallback(acceptedFiles => {
-    console.log(acceptedFiles)
+    
+    fetch('http://atlekraft.com/api/test', { // Your POST endpoint
+    method: 'POST',
+    headers: {
+      // Content-Type may need to be completely **omitted**
+      // or you may need something
+      "Content-Type": "PNG"
+    },
+    body: acceptedFiles[0].path // This is your file object
+  }).then(
+    response => response.json() // if the response is a JSON object
+  ).then(
+    success => console.log(success) // Handle the success response object
+  ).catch(
+    error => console.log(error) // Handle the error response object
+  );
+
+
   }, [])
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
@@ -110,6 +127,7 @@ const Blog = ({ apidata }) => {
 Blog.getInitialProps = async () => {
   const resp = await fetch("https://atlekraft.com/api/test", {
     method: "POST",
+  
   });
   const apidata = await resp.json();
   return { apidata };
