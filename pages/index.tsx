@@ -53,7 +53,7 @@ const Blog = () => {
     <Layout>
       <div className="page">
         <h1>My Blog</h1>
-        {JSON.stringify(data, null, 2)}
+        {JSON.stringify(apidata, null, 2)}
 
         <main>
           {data.feed.map(post => (
@@ -85,8 +85,8 @@ Blog.getInitialProps = async () => {
   const resp = await fetch("https://atlekraft.com/api/test", {
     method: "POST",
   });
-  const data = await resp.json();
-  return { data };
+  const apidata = await resp.json();
+  return { apidata };
 };
 
 
