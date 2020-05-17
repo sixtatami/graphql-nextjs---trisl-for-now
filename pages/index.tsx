@@ -10,7 +10,7 @@ import {useDropzone} from 'react-dropzone'
 function MyDropzone() {
   const onDrop = useCallback(acceptedFiles => {
     
-    fetch('http://atlekraft.com/api/test', { // Your POST endpoint
+    fetch('https://atlekraft.com/api/test', { // Your POST endpoint
     method: 'POST',
     headers: {
       // Content-Type may need to be completely **omitted**
