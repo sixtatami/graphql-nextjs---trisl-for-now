@@ -91,7 +91,7 @@ const Blog = ({ apidata }) => {
 
         <MyDropzone/>
 
-        <input type="file" id="myfile" name="myfile">
+        <input type="file" id="myfile" name="myfile"></input>
 
         {JSON.stringify(apidata, null, 2)}
 
