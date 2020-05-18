@@ -77,12 +77,34 @@ const Post = ({ post }) => (
 const Blog = ({ apidata }) => {
   const { loading, error, data } = useQuery(FeedQuery)
 
+  const onChangeHandler=event=>{
+    //console.log(event.target.files[0])
+    const data = new FormData() 
+    data.append('file', event.target.files[0])
+
+    fetch('/api/test', { // Your POST endpoint
+    method: 'POST',
+    headers: {
+      "Content-Type": "PNG"
+    },
+    body: data // This is your file object
+  }).then(
+    response => response.json() // if the response is a JSON object
+  ).then(
+    success => console.log("success "+success) // Handle the success response object
+  ).catch(
+    error => console.log("error "+error) // Handle the error response object
+  );
+
+  }
+
   if (loading) {
     return <div>trying to Loading ...</div>
   }
   if (error) {
     return <div>Error: {error.message}</div>
   }
+
 
   return (
     <Layout>
@@ -91,7 +113,7 @@ const Blog = ({ apidata }) => {
 
         <MyDropzone/>
 
-        <input type="file" id="myfile" name="myfile"></input>
+        <input type="file" name="file" onChange={onChangeHandler}/>
 
         {JSON.stringify(apidata, null, 2)}
 
