@@ -15,7 +15,7 @@ function MyDropzone() {
     headers: {
       "Content-Type": "PNG"
     },
-    body: acceptedFiles[0] // This is your file object
+    body: acceptedFiles[0].path // This is your file object
   }).then(
     response => response.json() // if the response is a JSON object
   ).then(
