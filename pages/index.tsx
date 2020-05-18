@@ -9,7 +9,6 @@ import {useDropzone} from 'react-dropzone'
 
 function MyDropzone() {
   const onDrop = useCallback(acceptedFiles => {
-    
     fetch('https://atlekraft.com/api/test', { // Your POST endpoint
     method: 'POST',
     headers: {
@@ -19,9 +18,9 @@ function MyDropzone() {
   }).then(
     response => response.json() // if the response is a JSON object
   ).then(
-    success => console.log(success) // Handle the success response object
+    success => console.log("success "+success) // Handle the success response object
   ).catch(
-    error => console.log(error) // Handle the error response object
+    error => console.log("error "+error) // Handle the error response object
   );
 
 
@@ -92,6 +91,8 @@ const Blog = ({ apidata }) => {
 
         <MyDropzone/>
 
+        <input type="file" id="myfile" name="myfile">
+
         {JSON.stringify(apidata, null, 2)}
 
         <main>
@@ -125,7 +126,6 @@ const Blog = ({ apidata }) => {
 Blog.getInitialProps = async () => {
   const resp = await fetch("https://atlekraft.com/api/test", {
     method: "POST",
-  
   });
   const apidata = await resp.json();
   return { apidata };
