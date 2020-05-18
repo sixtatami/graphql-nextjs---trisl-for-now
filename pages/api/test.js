@@ -1,7 +1,6 @@
 export default (req, res) => {
-    console.log(req);
-    console.log(req.files);
-    console.log(res);
+    console.log(req, res);
+
     res.send({ resp: "TEST Response" });
   };
   
