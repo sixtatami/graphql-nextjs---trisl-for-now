@@ -77,16 +77,12 @@ const Post = ({ post }) => (
 const Blog = ({ apidata }) => {
   const { loading, error, data } = useQuery(FeedQuery)
 
-  const onChangeHandler=event=>{
+  const onChangeHandler = event => {
     //console.log(event.target.files[0])
     const data = new FormData() 
     data.append('file', event.target.files[0])
-
     fetch('/api/test', { // Your POST endpoint
     method: 'POST',
-    headers: {
-      "Content-Type": "PNG"
-    },
     body: data // This is your file object
   }).then(
     response => response.json() // if the response is a JSON object
