@@ -111,7 +111,7 @@ const Blog = ({ apidata }) => {
 
         <input type="file" name="file" onChange={onChangeHandler}/>
 
-        {JSON.stringify(apidata, null, 2)}
+        {/* {JSON.stringify(apidata, null, 2)} */}
 
         <main>
           {data.feed.map(post => (
@@ -142,11 +142,11 @@ const Blog = ({ apidata }) => {
 
 
 Blog.getInitialProps = async () => {
-  const resp = await fetch("https://atlekraft.com/api/test", {
-    method: "POST",
-  });
-  const apidata = await resp.json();
-  return { apidata };
+  // const resp = await fetch("https://atlekraft.com/api/test", {
+  //   method: "POST",
+  // });
+  // const apidata = await resp.json();
+  // return { apidata };
 };
 
 
