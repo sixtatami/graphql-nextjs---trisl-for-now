@@ -81,6 +81,7 @@ const Blog = ({ apidata }) => {
     //console.log(event.target.files[0])
     const data = new FormData() 
     data.append('sampleFile', event.target.files[0])
+
     fetch('/api/test', { // Your POST endpoint
     method: 'POST',
     body: data // This is your file object
